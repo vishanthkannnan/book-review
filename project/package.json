@@ -20,7 +20,6 @@
     "express": "^4.19.2",
     "framer-motion": "^11.0.24",
     "js-confetti": "^0.12.0",
-    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.344.0",
     "mongoose": "^8.3.2",
     "react": "^18.3.1",

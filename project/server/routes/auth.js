@@ -1,9 +1,9 @@
 import express from 'express';
 import User from '../models/User.js';
-import { authMiddleware } from '../middleware/auth.js';
+// import { authMiddleware } from '../middleware/auth.js';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'booknest-secret-key-change-in-production';
+// const JWT_SECRET = process.env.JWT_SECRET || 'booknest-secret-key-change-in-production';
 
 // Register
 router.post('/register', async (req, res) => {
@@ -34,12 +34,8 @@ router.post('/register', async (req, res) => {
     const user = new User({ username, email, password });
     await user.save();
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '7d' });
-
     res.status(201).json({
       message: 'User registered successfully',
-      token,
       user: user.toJSON()
     });
   } catch (error) {
@@ -69,12 +65,8 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '7d' });
-
     res.json({
       message: 'Login successful',
-      token,
       user: user.toJSON()
     });
   } catch (error) {
@@ -83,18 +75,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Get current user
-router.get('/me', authMiddleware, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.userId);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json({ user: user.toJSON() });
-  } catch (error) {
-    console.error('Get user error:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
+// Get current user (not implemented)
+router.get('/me', (req, res) => {
+  res.status(501).json({ message: 'Not implemented: JWT authentication removed.' });
 });
 
 export default router;
