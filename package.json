@@ -1,0 +1,12 @@
+{
+  "name": "book-review-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd project && npm install && npm run build",
+    "start": "cd project && npm start"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+} 
