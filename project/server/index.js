@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 import bookRoutes from './routes/books.js';
 import reviewRoutes from './routes/reviews.js';
+import adminRoutes from './routes/admin.js';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ mongoose.connect(MONGODB_URI)
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

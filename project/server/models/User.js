@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
   avatar: {
     type: String,
     default: ''
@@ -49,6 +54,11 @@ const userSchema = new mongoose.Schema({
 // Compare password method (plain text, not secure)
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return candidatePassword === this.password;
+};
+
+// Check if user is admin
+userSchema.methods.isAdmin = function() {
+  return this.role === 'admin';
 };
 
 // Remove sensitive data when converting to JSON

@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import AuthPage from './pages/AuthPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import AdminPage from './pages/AdminPage';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route 
                 path="/profile" 
                 element={
